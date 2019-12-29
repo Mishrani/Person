@@ -10,31 +10,35 @@ class App extends Component{
             {name: 'Nitesh2', age: 23},
             {name: 'Nitesh3', age: 27}
         ],
-        otherState: "Some Other Value"
+        otherState: "Some Other Value",
+        showPersons: false
     }
-
     switchNameHandler = (newName) => {
+        console.log("switch Handler");
+
         this.setState ( {
             persons: [
                 {name: newName, age: 25},
                 {name: 'Nitesh5', age: 23},
                 {name: 'Nitesh6', age: 27}
-            ]
-        })}    
+            ] })}    
 
         nameChangedHandler = (event) => {
+            console.log("name changed handler");
+
             this.setState ( {
                 persons: [
                     {name: "Max!!!", age: 25},
                     {name: event.target.value, age: 23},
                     {name: 'Nitesh6', age: 27}
-                ],
-                showPersons: false
+                ]
             })
         }
 
         togglePersonsHandler = () => {
-          const doesShow = this.state.persons;
+            console.log("togglePersonsHandler done");
+
+          const doesShow = this.state.showpersons;
           this.setState({showPersons : !doesShow});
         }
 
@@ -45,34 +49,33 @@ class App extends Component{
             border: '1px solid blue',
             padding: '8px',
             cursor: 'pointer'
-        };
+        }
         return(
             <div className="App">
                 <p>Welcome to React!!!</p>
                 <button style={style} onClick = {this.togglePersonsHandler}>
                 Switch Person
                 </button>
-                
-                {this.state.showPersons === true ? 
-          
+               {this.state.showPersons === true ?
                 <div>
-                  <Person 
-                    name={this.state.persons[0].name} 
-                    age={this.state.persons[0].age} >
-                  </Person>
-
-                  <Person 
-                    name={this.state.persons[1].name} 
-                    age={this.state.persons[1].age} 
-                    click = {this.switchNameHandler.bind(this,"Max!")}
-                    changed={this.nameChangedHandler}>
-                  </Person>
-
-                  <Person 
-                    name={this.state.persons[2].name} 
-                    age={this.state.persons[2].age}>
-                  </Person>
-                </div>: null} 
+                <Person 
+                  name={this.state.persons[0].name} 
+                  age={this.state.persons[0].age} >
+                </Person>
+    
+                <Person 
+                  name={this.state.persons[1].name} 
+                  age={this.state.persons[1].age} 
+                  click = {this.switchNameHandler.bind(this,"Max!")}
+                  changed={this.nameChangedHandler}>
+                </Person>
+    
+                <Person 
+                  name={this.state.persons[2].name} 
+                  age={this.state.persons[2].age}>
+                </Person>
+              </div> : null }
+          
             </div>
         );
     }
